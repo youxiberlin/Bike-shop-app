@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, ScrollView, Text, View, Button, Modal, Pressable } from 'react-native'
 import SortPrice from './SortPrice';
 import CategoryFilter from './CategoryFilter';
+import PriceRangeFilter from './PriceRangeFilter';
 
 export default function SettingModal({
     modalVisible,
@@ -10,7 +11,11 @@ export default function SettingModal({
     setSortPriceOrder,
     bikeCategories,
     filteredCategories,
-    filterCategoryHandler
+    filterCategoryHandler,
+    minPrice,
+    setMinPrice,
+    maxPrice,
+    setMaxPrice
    }) {
   return (
     <View style={styles.container}>
@@ -35,6 +40,14 @@ export default function SettingModal({
                 bikeCategories,
                 filteredCategories,
                 filterCategoryHandler
+              }}
+            />
+            <PriceRangeFilter
+              {...{
+                minPrice,
+                setMinPrice,
+                maxPrice,
+                setMaxPrice
               }}
             />
             <Pressable
