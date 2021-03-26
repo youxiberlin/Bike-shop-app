@@ -1,9 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text, Button } from 'react-native'
 
-export default function SortPrice({ route, navigation }) {
-  const { setSortPriceOrder } = route.params;
-
+export default function SortPrice({ setSortPriceOrder }) {
   return (
     <View style={styles.container}>
       <Button
