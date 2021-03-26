@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import SortPrice from '../components/SortPrice';
 
-export default function SettingScreen() {
+export default function SettingScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
-      <Text>setting</Text>
+      <SortPrice
+        {...{route, navigation}}
+      />
     </View>
   );
 }
