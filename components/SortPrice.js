@@ -7,12 +7,18 @@ export default function SortPrice({ sortPriceOrder, setSortPriceOrder }) {
       <Button
         title='Highest'
         color={sortPriceOrder === 'high' ? 'red' : null}
-        onPress={() => setSortPriceOrder('high')}
+        onPress={() => {
+          if (sortPriceOrder === 'high') setSortPriceOrder(null)
+          else setSortPriceOrder('high')
+        }}
       />
       <Button
         title='Lowest'
         color={sortPriceOrder === 'low' ? 'red' : null}
-        onPress={() => setSortPriceOrder('low')}
+        onPress={() => {
+          if (sortPriceOrder === 'low') setSortPriceOrder(null)
+          else setSortPriceOrder('low')
+        }}
       />
     </View>
   );
