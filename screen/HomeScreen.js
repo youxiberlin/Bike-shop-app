@@ -13,7 +13,9 @@ export default function HomeScreen({ navigation, route }) {
   const [sortPriceOrder, setSortPriceOrder] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState([]);
-  
+  const [minPrice, setMinPrice] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
+  console.log(minPrice, maxPrice)
   const filterCategoryHandler = (category) => {
     const addToCategories = item => setFilteredCategories([...filteredCategories, item]);
     const removeFromCategories = (item) => {
@@ -22,23 +24,40 @@ export default function HomeScreen({ navigation, route }) {
     }
     if (filteredCategories.includes(category)) removeFromCategories(category)
     else addToCategories(category)
-  }
+  };
 
-  const filterByCategory = v => includes(v.category, filteredCategories)
-  const fns = {
-    high: orderHighest,
-    low: orderLowest
-  }
-  const bikes = filteredCategories.length && sortPriceOrder ?
-      compose(filter(filterByCategory), sort(fns[sortPriceOrder]))(bikeData) :
-    filteredCategories.length ?
-      compose(filter(filterByCategory))(bikeData) :
-    sortPriceOrder ?
-      compose(sort(fns[sortPriceOrder]))(bikeData) :
-    bikeData
+
+  // const byCategory = v => includes(v.category, filteredCategories)
+  const byCategory = (categories) => {
+    return categories.length ?
+     item => includes(item.category, filteredCategories) :
+     item => item
+  };
+  const byPriceRange = (min, max) => {
+    if (typeof min === 'string' || typeof max === 'string') {
+      min = parseInt(min, 10)
+      max = parseInt(max, 10)
+    }
+    if (min && max) return item => item.price >= min && item.price <= max
+    else if (min) return item => item.price >= min
+    else if (max) return item => item.price <= max
+    else return item => item;
+  };
+  const byPriceOrder = (sortPriceOrder) => {
+    const fns = {
+      high: orderHighest,
+      low: orderLowest
+    };
+    return sortPriceOrder ? fns[sortPriceOrder] : () => {}
+  };
+
+  const bikes = compose(
+    filter(byCategory(filteredCategories)),
+    filter(byPriceRange(minPrice, maxPrice)),
+    sort(byPriceOrder(sortPriceOrder))
+  )(bikeData)
+
   console.log(bikes.map(bike => `${bike.category}: ${bike.price}`))
-
-
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -58,7 +77,11 @@ export default function HomeScreen({ navigation, route }) {
             setSortPriceOrder,
             bikeCategories,
             filteredCategories,
-            filterCategoryHandler
+            filterCategoryHandler,
+            minPrice,
+            setMinPrice,
+            maxPrice,
+            setMaxPrice
           }}
         />
       <Text>sortPriceOrder: {sortPriceOrder}</Text>
