@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, Button, Modal, Pressable } from 'react-native'
 import SortPrice from './SortPrice';
+import CategoryFilter from './CategoryFilter';
 
 export default function SettingModal({
     modalVisible,
     setModalVisible,
     sortPriceOrder,
-    setSortPriceOrder
+    setSortPriceOrder,
+    bikeCategories,
+    filteredCategories,
+    filterCategoryHandler
    }) {
   return (
     <View style={styles.container}>
@@ -21,7 +25,17 @@ export default function SettingModal({
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Hello World!</Text>
             <SortPrice
-              {...{setSortPriceOrder}}
+              {...{
+                sortPriceOrder,
+                setSortPriceOrder
+              }}
+            />
+            <CategoryFilter
+              {...{
+                bikeCategories,
+                filteredCategories,
+                filterCategoryHandler
+              }}
             />
             <Pressable
               style={[styles.button, styles.buttonClose]}
