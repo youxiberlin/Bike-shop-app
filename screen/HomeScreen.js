@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Text, View, Button } from 'react-native';
-
+import { compose, sort } from 'ramda'
+import { orderLowest, orderHighest } from '../lib/utils';
 import BikeCard from '../components/BikeCard';
-
 import bikeData from '../data/bike-data';
 
 export default function HomeScreen({ navigation, route }) {
   let bikes = bikeData;
 
   const [sortPriceOrder, setSortPriceOrder] = useState(null);
-
+  bikes = sortPriceOrder && sortPriceOrder === 'high' ?
+    compose(sort(orderHighest))(bikes) :
+    compose(sort(orderLowest))(bikes)
 
   return (
     <ScrollView>
