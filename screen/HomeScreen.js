@@ -16,7 +16,6 @@ export default function HomeScreen({ navigation, route }) {
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
   const [filteredSizes, setFilterSizes] = useState([]);
-  console.log('filterd sizes', filteredSizes)
 
   const filterSizeHandler = (size) => {
     const addToSizes = item => setFilterSizes([...filteredSizes, item]);
@@ -24,8 +23,8 @@ export default function HomeScreen({ navigation, route }) {
       const newArr = filteredSizes.filter(elem => elem !== item);
       setFilterSizes(newArr);
     }
-    if (filteredSizes.includes(size)) removeFromSizes(size)
-    else addToSizes(size)
+    if (filteredSizes.includes(size)) removeFromSizes(size);
+    else addToSizes(size);
   }
 
   const filterCategoryHandler = (category) => {
@@ -34,48 +33,65 @@ export default function HomeScreen({ navigation, route }) {
       const newArr= filteredCategories.filter(elem => elem !== item);
       setFilteredCategories(newArr);
     }
-    if (filteredCategories.includes(category)) removeFromCategories(category)
-    else addToCategories(category)
+    if (filteredCategories.includes(category)) removeFromCategories(category);
+    else addToCategories(category);
   };
 
-  // const byCategory = v => includes(v.category, filteredCategories)
   const byCategory = (categories) => {
     return categories.length ?
      item => includes(item.category, filteredCategories) :
-     item => item
+     item => item;
   };
+
   const byPriceRange = (min, max) => {
     if (typeof min === 'string' || typeof max === 'string') {
-      min = parseInt(min, 10)
-      max = parseInt(max, 10)
+      min = parseInt(min, 10);
+      max = parseInt(max, 10);
     }
-    if (min && max) return item => item.price >= min && item.price <= max
-    else if (min) return item => item.price >= min
-    else if (max) return item => item.price <= max
+    if (min && max) return item => item.price >= min && item.price <= max;
+    else if (min) return item => item.price >= min;
+    else if (max) return item => item.price <= max;
     else return item => item;
   };
+
   const byPriceOrder = (sortPriceOrder) => {
     const fns = {
       high: orderHighest,
       low: orderLowest
     };
-    return sortPriceOrder ? fns[sortPriceOrder] : () => {}
+    return sortPriceOrder ? fns[sortPriceOrder] : () => {};
   };
+
+  const bySize = size => item => {
+    const availableSizes = Object.keys(item.size).filter(v => item.size[v]);
+    return includes(size, availableSizes);
+  }
+
+  const applySizeFilter = sizes => items => {
+      return sizes.length ?
+        sizes.reduce((acc, curr) => {
+            const res = filter(bySize(curr), items);
+            return [...new Set([...acc, ...res])];
+          }, []) :
+        items;
+  }
 
   const bikes = compose(
     filter(byCategory(filteredCategories)),
     filter(byPriceRange(minPrice, maxPrice)),
-    sort(byPriceOrder(sortPriceOrder))
+    sort(byPriceOrder(sortPriceOrder)),
+    applySizeFilter(filteredSizes)
   )(bikeData)
 
-  console.log(bikes.map(bike => `${bike.category}: ${bike.price}`))
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
         <Button onPress={() => setModalVisible(true)} title="setting" />
-      ),
-    });
-  }, [navigation]);
+        ),
+      });
+    }, [navigation]);
+    
+  console.log(bikes.map(bike => `${bike.category}: ${bike.price}: ${JSON.stringify(bike.size)}`))
 
   return (
     <ScrollView>
