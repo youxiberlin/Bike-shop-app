@@ -4,6 +4,7 @@ import SortPrice from './SortPrice';
 import CategoryFilter from './CategoryFilter';
 import PriceRangeFilter from './PriceRangeFilter';
 import SizeFilter from './SizeFilter';
+import ClearSetting from './ClearSetting';
 
 export default function SettingModal({
     modalVisible,
@@ -18,7 +19,8 @@ export default function SettingModal({
     maxPrice,
     setMaxPrice,
     filteredSizes,
-    filterSizeHandler
+    filterSizeHandler,
+    clearSettingHandler
    }) {
   return (
     <View style={styles.container}>
@@ -58,6 +60,9 @@ export default function SettingModal({
                 filteredSizes,
                 filterSizeHandler
               }}
+            />
+            <ClearSetting
+              {...{clearSettingHandler}}
             />
             <Pressable
               style={[styles.button, styles.buttonClose]}

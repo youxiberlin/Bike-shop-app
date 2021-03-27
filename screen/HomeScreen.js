@@ -17,6 +17,14 @@ export default function HomeScreen({ navigation, route }) {
   const [maxPrice, setMaxPrice] = useState(null);
   const [filteredSizes, setFilterSizes] = useState([]);
 
+  const clearSettingHandler = () => {
+    setSortPriceOrder(null);
+    setFilteredCategories([]);
+    setMinPrice(null);
+    setMaxPrice(null);
+    setFilterSizes([]);
+  };
+
   const filterSizeHandler = (size) => {
     const addToSizes = item => setFilterSizes([...filteredSizes, item]);
     const removeFromSizes = (item) => {
@@ -25,7 +33,7 @@ export default function HomeScreen({ navigation, route }) {
     }
     if (filteredSizes.includes(size)) removeFromSizes(size);
     else addToSizes(size);
-  }
+  };
 
   const filterCategoryHandler = (category) => {
     const addToCategories = item => setFilteredCategories([...filteredCategories, item]);
@@ -71,7 +79,8 @@ export default function HomeScreen({ navigation, route }) {
             maxPrice,
             setMaxPrice,
             filteredSizes,
-            filterSizeHandler
+            filterSizeHandler,
+            clearSettingHandler
           }}
         />
       <Text>sortPriceOrder: {sortPriceOrder}</Text>
