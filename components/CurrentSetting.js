@@ -8,23 +8,52 @@ export default function CurrentSetting({
   minPrice,
   maxPrice
 }) {
+  const visible = sortPriceOrder || filteredCategories.length || minPrice || maxPrice || filteredSizes.length;
+
   return (
-    <View style={styles.container}>
-      {sortPriceOrder ? <Text>sortPriceOrder: {sortPriceOrder}</Text> : null}
+    <View style={visible ? styles.visible : styles.container}>
+      {sortPriceOrder ? <Text>Price Order: {sortPriceOrder === 'high' ? 'Highest' : 'Lowest'}</Text> : null}
       {filteredCategories.length ?
-        filteredCategories.map(category => <Text key={category}>{category}</Text>) :
-      null}
+        <View style={styles.lists}>
+          <Text>Categories:</Text>
+          {filteredCategories.map(category =>
+            <Text style={styles.item} key={category}>{category}</Text>)}
+        </View> :
+        null}
       {filteredSizes.length ?
-        filteredSizes.map(size => <Text key={size}>{size}</Text>) :
+        <View style={styles.lists}>
+          <Text>Sizes:</Text>
+          {filteredSizes.map(size => <Text style={styles.item} key={size}>{size}</Text>)}
+        </View>
+         :
+       null}
+      {minPrice || maxPrice ?
+        <View style={styles.lists}>
+          <Text>Price:</Text>
+          <Text>min: {minPrice} max: {maxPrice}</Text>
+        </View> :
       null}
-      {minPrice || maxPrice ? <Text>min: {minPrice} max: {maxPrice}</Text> : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    backgroundColor: '#eee',
+  },
+  visible: {
+    backgroundColor: '#eee',
+    padding: 10,
+  },
+  lists: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 5,
+  },
+  item: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    paddingHorizontal: 5,
+    marginHorizontal: 3
   }
 });
