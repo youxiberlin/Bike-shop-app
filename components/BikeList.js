@@ -10,6 +10,7 @@ export default function BikeList({ bikes, navigation }) {
             key={item.id}
             name={item.name}
             images={item.images}
+            category={item.category}
             price={item.price}
             navigation={navigation}
           />
