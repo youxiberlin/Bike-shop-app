@@ -12,8 +12,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="BikeDetailScreen" component={BikeDetailScreen} />
+        <Stack.Screen name="Bike Catalog" component={HomeScreen} />
+        <Stack.Screen
+         name="BikeDetailScreen"
+         component={BikeDetailScreen}
+         options={({ route }) => ({ title: route.params.name })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
