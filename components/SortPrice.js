@@ -6,6 +6,7 @@ export default function SortPrice({ sortPriceOrder, setSortPriceOrder }) {
     <View style={styles.container}>
       <Button
         title='Highest'
+        style={styles.button}
         color={sortPriceOrder === 'high' ? 'red' : null}
         onPress={() => {
           if (sortPriceOrder === 'high') setSortPriceOrder(null)
@@ -27,7 +28,9 @@ export default function SortPrice({ sortPriceOrder, setSortPriceOrder }) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: 'white',
-    flexDirection: 'column',
+    flexDirection: 'row',
+  },
+  button: {
+    backgroundColor: 'red'
   }
 });

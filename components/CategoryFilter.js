@@ -23,7 +23,6 @@ export default function CategoryFilter({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: 'black',
     flexDirection: 'row',
   }
 });
