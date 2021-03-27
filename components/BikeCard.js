@@ -29,16 +29,17 @@ export default function BikeCard({ name, images, price, category, navigation }) 
 
 const styles = StyleSheet.create({
   container: {
-    width: '50%',
+    width: '45%',
     height: 300,
     padding: 5,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    margin: 8,
   },
   imageContainer: {
     width: '100%',
     height: '50%',
     padding: 10,
-    borderWidth: 1,
     borderColor: '#ccc',
   },
   image: {
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 18,
+    fontWeight: '500',
     marginTop: 10
   },
   itemCategory: {

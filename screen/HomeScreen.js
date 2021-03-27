@@ -56,7 +56,7 @@ export default function HomeScreen({ navigation }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Button onPress={() => setModalVisible(true)} title="setting" />
+        <Button onPress={() => setModalVisible(true)} title="Filter" />
         ),
       });
     }, [navigation]);
