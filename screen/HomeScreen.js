@@ -4,6 +4,7 @@ import { compose, filter, sort } from 'ramda'
 import { byCategory, byPriceRange, byPriceOrder, applySizeFilter, } from '../lib/utils';
 import BikeCard from '../components/BikeCard';
 import SettingModal from '../components/SettingModal';
+import CurrentSetting from '../components/CurrentSetting';
 import bikeData from '../data/bike-data';
 
 // bike categories can be put in a config or fetch from database in production
@@ -83,7 +84,15 @@ export default function HomeScreen({ navigation, route }) {
             clearSettingHandler
           }}
         />
-      <Text>sortPriceOrder: {sortPriceOrder}</Text>
+        <CurrentSetting
+          {...{
+            sortPriceOrder,
+            filteredCategories,
+            filteredSizes,
+            minPrice,
+            maxPrice
+          }}
+        />
        {bikes.map(item => (
           <BikeCard
             key={item.id}
