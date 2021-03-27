@@ -15,6 +15,7 @@ export default function ClearSetting({ clearSettingHandler }) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    flexDirection: 'row',
+    marginVertical: 10,
+    justifyContent: 'center'
   }
 });
