@@ -75,25 +75,25 @@ const BIKES = [
   ),
   new Bike(
     5,
-    "VRC Evo mat black2",
+    "Gravix Pro mantis",
     "road",
-    990.50,
+    1799.50,
     {
       51: 0,
       53: 0,
       55: 1,
       57: 1,
-      58: 0,
+      58: 1,
     },
     [
-      "https://images.internetstores.de/products/1225449/02/372fe5/votec-vrc-evo-black-matte-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
-      "https://images.internetstores.de/products/1225449/01/70c935/votec-vrc-evo-black-matte-2.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
-      "https://images.internetstores.de/products/1225449/01/0184bc/votec-vrc-evo-black-matte-3.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613"
+      "https://images.internetstores.de/products/1281882/02/842d91/serious-gravix-pro-mantis-2.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1281882/02/4ce818/serious-gravix-pro-mantis-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1281882/02/151eb7/serious-gravix-pro-mantis-3.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613"
     ]
   ),
   new Bike(
     6,
-    "Bear Peak Power 2.0 black/black2",
+    "Rockville Disc white/pink",
     "mountain",
     760.50,
     {
@@ -104,9 +104,45 @@ const BIKES = [
       58: 0,
     },
     [
-      "https://images.internetstores.de/products/1005968/02/9beee7/serious-bear-peak-power-20-black-black-2.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
-      "https://images.internetstores.de/products/1005968/02/ade296/serious-bear-peak-power-20-black-black-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
-      "https://images.internetstores.de/products/1005968/02/c1f3f3/serious-bear-peak-power-20-black-black-3.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613"
+      "https://images.internetstores.de/products/1132004/02/67e335/serious-rockville-275-disc-white-pink-7.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1132004/02/1a29d1/serious-rockville-275-disc-white-pink-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1132004/01/dc001d/serious-rockville-275-disc-white-pink-2.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613"
+    ]
+  ),
+  new Bike(
+    7,
+    "Fenix SL Disc 105 red",
+    "road",
+    2490.50,
+    {
+      51: 1,
+      53: 0,
+      55: 0,
+      57: 1,
+      58: 1,
+    },
+    [
+      "https://images.internetstores.de/products/1368804/02/678b72/ridley-bikes-fenix-sl-disc-105-red-2.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1368804/02/145031/ridley-bikes-fenix-sl-disc-105-red-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1368804/02/77f797/ridley-bikes-fenix-sl-disc-105-red-3.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613"
+    ]
+  ),
+  new Bike(
+    8,
+    "Detroit EQ Wave berry",
+    "city",
+    340.50,
+    {
+      51: 0,
+      53: 1,
+      55: 0,
+      57: 2,
+      58: 1, 
+    },
+    [
+      "https://images.internetstores.de/products/1124297/02/04ffc9/ortler-detroit-eq-damen-berry-7.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1124297/02/91a7a0/ortler-detroit-eq-damen-berry-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
+      "https://images.internetstores.de/products/1124297/01/890527/ortler-detroit-eq-damen-berry-2.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613"
     ]
   ),
 ]
