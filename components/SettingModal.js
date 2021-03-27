@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView, Text, View, Button, Modal, Pressable } from 're
 import SortPrice from './SortPrice';
 import CategoryFilter from './CategoryFilter';
 import PriceRangeFilter from './PriceRangeFilter';
+import SizeFilter from './SizeFilter';
 
 export default function SettingModal({
     modalVisible,
@@ -15,7 +16,9 @@ export default function SettingModal({
     minPrice,
     setMinPrice,
     maxPrice,
-    setMaxPrice
+    setMaxPrice,
+    filteredSizes,
+    filterSizeHandler
    }) {
   return (
     <View style={styles.container}>
@@ -48,6 +51,12 @@ export default function SettingModal({
                 setMinPrice,
                 maxPrice,
                 setMaxPrice
+              }}
+            />
+            <SizeFilter
+              {...{
+                filteredSizes,
+                filterSizeHandler
               }}
             />
             <Pressable
