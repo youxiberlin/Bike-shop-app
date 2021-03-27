@@ -1,52 +1,58 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button, Pressable } from 'react-native'
+import { View, StyleSheet, Image, Text, Button, Pressable } from 'react-native';
+import Swiper from 'react-native-swiper';
 
 export default function BikeDetail({ name, price, images, category }) {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={{ uri: images[0] }}
-        />
-      </Pressable>
+        <Swiper style={styles.wrapper} showsButtons={true} paginationStyle={{position:'absolute', bottom: 50}}>
+          {images.map(image => (
+            <View style={styles.slide}>
+              <Image
+                key={image}
+                style={styles.image}
+                source={{ uri: image }}
+              />
+           </View>
+          ))}
+        </Swiper>
       <View style={styles.itemInfo}>
+        <Text style={styles.itemCategory}>{category}</Text>
         <Text style={styles.itemName}>{name}</Text>
         <Text style={styles.itemPrice}>{price} €</Text>
-        <Text style={styles.itemCategory}>{category}</Text>
-      </View>
+      </View> 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    height: '70%'
+  },
+  slide: {
+    flex: 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 30
+    paddingVertical: 30
   },
   image: {
-    width: '90%',
-    height: '90%',
+    width: '100%',
+    height: '100%',
     resizeMode: 'contain'
   },
-  imageContainer: {
-    height: 300,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
-  },
   itemInfo: {
-    paddingTop: 20,
     paddingHorizontal: 30,
   },
   itemName: {
     fontSize: 24,
-    marginTop: 10,
     fontWeight: '600'
   },
   itemCategory: {
     fontSize: 18,
-    marginTop: 8
   },
   itemPrice: {
     fontSize: 20,
