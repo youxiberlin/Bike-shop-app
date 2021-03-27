@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Text, View, Button, Modal, Pressable } from 'react-native';
-import { compose, filter, sort, includes } from 'ramda'
-import { orderLowest, orderHighest } from '../lib/utils';
+import { compose, filter, sort } from 'ramda'
+import { byCategory, byPriceRange, byPriceOrder, applySizeFilter, } from '../lib/utils';
 import BikeCard from '../components/BikeCard';
 import SettingModal from '../components/SettingModal';
 import bikeData from '../data/bike-data';
@@ -36,45 +36,6 @@ export default function HomeScreen({ navigation, route }) {
     if (filteredCategories.includes(category)) removeFromCategories(category);
     else addToCategories(category);
   };
-
-  const byCategory = (categories) => {
-    return categories.length ?
-     item => includes(item.category, filteredCategories) :
-     item => item;
-  };
-
-  const byPriceRange = (min, max) => {
-    if (typeof min === 'string' || typeof max === 'string') {
-      min = parseInt(min, 10);
-      max = parseInt(max, 10);
-    }
-    if (min && max) return item => item.price >= min && item.price <= max;
-    else if (min) return item => item.price >= min;
-    else if (max) return item => item.price <= max;
-    else return item => item;
-  };
-
-  const byPriceOrder = (sortPriceOrder) => {
-    const fns = {
-      high: orderHighest,
-      low: orderLowest
-    };
-    return sortPriceOrder ? fns[sortPriceOrder] : () => {};
-  };
-
-  const bySize = size => item => {
-    const availableSizes = Object.keys(item.size).filter(v => item.size[v]);
-    return includes(size, availableSizes);
-  }
-
-  const applySizeFilter = sizes => items => {
-      return sizes.length ?
-        sizes.reduce((acc, curr) => {
-            const res = filter(bySize(curr), items);
-            return [...new Set([...acc, ...res])];
-          }, []) :
-        items;
-  }
 
   const bikes = compose(
     filter(byCategory(filteredCategories)),
