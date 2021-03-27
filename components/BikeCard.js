@@ -2,13 +2,14 @@ import React from 'react';
 import { View, StyleSheet, Image, Text, Button, Pressable } from 'react-native'
 
 export default function BikeCard({ name, images, price, category, navigation }) {
+  const bikeDetailNavigator = () => navigation.navigate('BikeDetailScreen', {
+    name, price, images, category
+  })
   return (
     <View style={styles.container}>
       <Pressable
         style={styles.imageContainer}
-        onPress={() => navigation.navigate('BikeDetailScreen', {
-          name, price, images
-        })}
+        onPress={bikeDetailNavigator}
       >
         <Image
           style={styles.image}
@@ -17,9 +18,7 @@ export default function BikeCard({ name, images, price, category, navigation }) 
       </Pressable>
       <View style={styles.itemInfo}>
         <Text
-          onPress={() => navigation.navigate('BikeDetailScreen', {
-            name, price, images
-          })}
+          onPress={bikeDetailNavigator}
           style={styles.itemName}>{name}</Text>
         <Text style={styles.itemCategory}>{category}</Text>
         <Text style={styles.itemPrice}>€ {price}</Text>
