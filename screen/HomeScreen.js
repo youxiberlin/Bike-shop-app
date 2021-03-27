@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Text, View, Button, Modal, Pressable } from 'react-native';
 import { compose, filter, sort } from 'ramda'
 import { byCategory, byPriceRange, byPriceOrder, applySizeFilter, } from '../lib/utils';
-import BikeCard from '../components/BikeCard';
 import SettingModal from '../components/SettingModal';
 import CurrentSetting from '../components/CurrentSetting';
+import BikeList from '../components/BikeList';
 import bikeData from '../data/bike-data';
 
 // bike categories can be put in a config or fetch from database in production
 const bikeCategories = ['road', 'city', 'e-bike', 'mountain']
 
-export default function HomeScreen({ navigation, route }) {
+export default function HomeScreen({ navigation }) {
   const [sortPriceOrder, setSortPriceOrder] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState([]);
@@ -93,15 +93,12 @@ export default function HomeScreen({ navigation, route }) {
             maxPrice
           }}
         />
-       {bikes.map(item => (
-          <BikeCard
-            key={item.id}
-            name={item.name}
-            images={item.images}
-            price={item.price}
-            navigation={navigation}
-          />
-       ))}
+        <BikeList
+          {...{
+            bikes,
+            navigation
+          }}
+        />
       </View>
     </ScrollView>
   );
@@ -109,9 +106,7 @@ export default function HomeScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // borderTopWidth: 2,
+    backgroundColor: 'white'
   }
 });
