@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import BikeCard from './BikeCard';
 
 export default function BikeList({ bikes, navigation }) {

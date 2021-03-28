@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, Text, View, Button, Modal, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Button } from 'react-native';
 import { compose, filter, sort } from 'ramda'
 import { byCategory, byPriceRange, byPriceOrder, applySizeFilter, } from '../lib/utils';
 import SettingModal from '../components/SettingModal';
@@ -7,10 +7,15 @@ import CurrentSetting from '../components/CurrentSetting';
 import BikeList from '../components/BikeList';
 import bikeData from '../data/bike-data';
 
-// bike categories can be put in a config or fetch from database in production
-const bikeCategories = ['road', 'city', 'e-bike', 'mountain']
-
 export default function HomeScreen({ navigation }) {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Button onPress={() => setModalVisible(true)} title="Filter" />
+        ),
+      });
+    }, [navigation]);
+
   const [sortPriceOrder, setSortPriceOrder] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState([]);
@@ -53,16 +58,6 @@ export default function HomeScreen({ navigation }) {
     applySizeFilter(filteredSizes)
   )(bikeData)
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Button onPress={() => setModalVisible(true)} title="Filter" />
-        ),
-      });
-    }, [navigation]);
-    
-  console.log(bikes.map(bike => `${bike.category}: ${bike.price}: ${JSON.stringify(bike.size)}`))
-
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -72,7 +67,6 @@ export default function HomeScreen({ navigation }) {
             setModalVisible,
             sortPriceOrder,
             setSortPriceOrder,
-            bikeCategories,
             filteredCategories,
             filterCategoryHandler,
             minPrice,
@@ -106,7 +100,6 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    // borderTopWidth: 2,
     backgroundColor: 'white'
   }
 });

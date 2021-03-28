@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native';
 
 export default function SortPrice({ sortPriceOrder, setSortPriceOrder }) {
   return (

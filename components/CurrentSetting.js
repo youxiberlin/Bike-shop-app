@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button } from 'react-native'
+import { View, StyleSheet, Text, } from 'react-native'
 
 export default function CurrentSetting({
   sortPriceOrder,
@@ -8,11 +8,17 @@ export default function CurrentSetting({
   minPrice,
   maxPrice
 }) {
-  const visible = sortPriceOrder || filteredCategories.length || minPrice || maxPrice || filteredSizes.length;
+  const visible = sortPriceOrder ||
+    filteredCategories.length ||
+    minPrice ||
+    maxPrice ||
+    filteredSizes.length;
 
   return (
     <View style={visible ? styles.visible : styles.container}>
-      {sortPriceOrder ? <Text>Price Order: {sortPriceOrder === 'high' ? 'Highest' : 'Lowest'}</Text> : null}
+      {sortPriceOrder ?
+        <Text>Price Order: {sortPriceOrder === 'high' ? 'Highest' : 'Lowest'}</Text> 
+        : null}
       {filteredCategories.length ?
         <View style={styles.lists}>
           <Text>Categories:</Text>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button, TextInput } from 'react-native'
+import { View, StyleSheet, Text, TextInput } from 'react-native';
 
 export default function PriceRangeFilter({
   minPrice,

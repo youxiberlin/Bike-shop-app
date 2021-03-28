@@ -33,42 +33,36 @@ export default function BikeDetail({ name, price, images, category, size }) {
           ))}
         </Swiper>
       <View style={styles.itemInfo}>
-        <Text style={styles.itemCategory}>{category}</Text>
-        <Text style={styles.itemName}>{name}</Text>
-        <Text style={styles.itemPrice}>{price} €</Text>
         <DropDownPicker
           defaultValue='size'
           items={menuItems}
         />
+        <Text style={styles.itemCategory}>{category}</Text>
+        <Text style={styles.itemName}>{name}</Text>
+        <Text style={styles.itemPrice}>{price} €</Text>
       </View> 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingTop: 30,
+    paddingBottom: 30,
+  },
   wrapper: {
     // height: '100%',
     height: 280,
     // height: 0.8,
-
     // backgroundColor: 'black'
   },
   pagination: {
     position:'absolute',
-    // backgroundColor: 'blue',
     bottom: 20
   },
   slide: {
-    // flex: 0.8,
-    // height: 300,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  container: {
-    // flex: 1,
-    backgroundColor: 'white',
-    paddingTop: 30,
-    paddingBottom: 30,
   },
   image: {
     width: '100%',
@@ -76,6 +70,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   itemInfo: {
+    flex: 1,
     paddingHorizontal: 30,
   },
   itemName: {

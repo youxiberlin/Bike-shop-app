@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button, Pressable } from 'react-native'
+import { View, StyleSheet, Image, Text, Pressable } from 'react-native';
 
 export default function BikeCard({ bike, navigation }) {
   const { name, images, price, category, size } = bike;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text, View, Button, Modal, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Modal, Pressable } from 'react-native';
 import SortPrice from './SortPrice';
 import CategoryFilter from './CategoryFilter';
 import PriceRangeFilter from './PriceRangeFilter';
@@ -11,7 +11,6 @@ export default function SettingModal({
     setModalVisible,
     sortPriceOrder,
     setSortPriceOrder,
-    bikeCategories,
     filteredCategories,
     filterCategoryHandler,
     minPrice,
@@ -41,7 +40,6 @@ export default function SettingModal({
             />
             <CategoryFilter
               {...{
-                bikeCategories,
                 filteredCategories,
                 filterCategoryHandler
               }}
