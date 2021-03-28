@@ -1,5 +1,8 @@
 # Bike Catalog App 🚴‍♀️
 
+This is Bike Catalog App that shows list of bikes.  
+You can filter and sort bikes on the filter setting, and each bike has a detailed view that provides more info about the bike. Enjoy! 🚀
+
 ## Getting Started
 
 #### Requirement
@@ -17,7 +20,7 @@ yarn || npm i
 
 ```
 
-#### 2. Open in your iOS simulator
+#### 2. Open in your simulator
 
 Run this command to start the development server and to start your app on iOS simulator:
 
@@ -30,7 +33,7 @@ on Android simulator:
 yarn run:android || npm run:android
 ```
 
-### Notes
+### Notes:
 #### Main technologies & framework
 Node.js, JavaScript, React Native, Expo
 
