@@ -8,7 +8,7 @@ export default function BikeList({ bikes, navigation }) {
       {bikes.map(item => (
           <BikeCard
             key={item.id}
-            bike = {item}
+            bike={item}
             navigation={navigation}
           />
        ))}
