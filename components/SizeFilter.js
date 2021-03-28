@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button } from 'react-native'
+import { View, StyleSheet, Text, } from 'react-native'
+import { bikeSizes } from '../config';
 
-// todo move to another directory
-const sizes = ['51', '53', '55', '57', '58']
 export default function SizeFilter({
   filteredSizes,
   filterSizeHandler
@@ -15,7 +14,7 @@ export default function SizeFilter({
         </Text>
       </View>
       <View style={styles.buttons}>
-      {sizes.map(item => (
+      {bikeSizes.map(item => (
         <Text
           key={item}
           style={filteredSizes.includes(item) ? styles.buttonActive : styles.button}
@@ -23,12 +22,6 @@ export default function SizeFilter({
         >
          {item}
         </Text>
-        // <Button
-        //   key={item}
-        //   title={item}
-        //   color={filteredSizes.includes(item) ? "red" : null}
-        //   onPress={() => filterSizeHandler(item)}
-        // />
       ))}
       </View>
     </View>

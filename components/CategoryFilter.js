@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, Button } from 'react-native'
+import { View, StyleSheet, Text, } from 'react-native';
+import { bikeCategories } from '../config';
 
 export default function CategoryFilter({
-    bikeCategories,
     filteredCategories,
     filterCategoryHandler
   }) {
