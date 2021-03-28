@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text, Button, Pressable } from 'react-native'
 
-export default function BikeCard({ name, images, price, category, navigation }) {
+export default function BikeCard({ bike, navigation }) {
+  const { name, images, price, category, size } = bike;
   const bikeDetailNavigator = () => navigation.navigate('BikeDetailScreen', {
-    name, price, images, category
+    name, price, images, category, size
   })
   return (
     <View style={styles.container}>
