@@ -56,7 +56,7 @@ export default function HomeScreen({ navigation }) {
     filter(byPriceRange(minPrice, maxPrice)),
     sort(byPriceOrder(sortPriceOrder)),
     applySizeFilter(filteredSizes)
-  )(bikeData)
+  )(bikeData);
 
   return (
     <ScrollView>
