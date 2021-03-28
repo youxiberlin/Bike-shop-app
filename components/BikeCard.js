@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text, Pressable } from 'react-native';
 
-export default function BikeCard({ bike, navigation }) {
-  const { name, images, price, category, size } = bike;
+export default function BikeCard({
+     name,
+     price,
+     images,
+     category,
+     size,
+     navigation
+  }) {
   const bikeDetailNavigator = () => navigation.navigate('BikeDetailScreen', {
     name, price, images, category, size
   })
@@ -16,7 +22,7 @@ export default function BikeCard({ bike, navigation }) {
           style={styles.image}
           source={{ uri: images[0] }}
         />
-      </Pressable>
+      </Pressable> 
       <View style={styles.itemInfo}>
         <Text
           onPress={bikeDetailNavigator}
@@ -31,9 +37,8 @@ export default function BikeCard({ bike, navigation }) {
 const styles = StyleSheet.create({
   container: {
     width: '45%',
-    height: 300,
+    height: 280,
     padding: 5,
-    flexDirection: 'column',
     backgroundColor: 'white',
     margin: 8,
   },

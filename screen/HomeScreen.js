@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, View, Button } from 'react-native';
+import { Button, SafeAreaView, FlatList } from 'react-native';
 import { compose, filter, sort } from 'ramda'
 import { byCategory, byPriceRange, byPriceOrder, applySizeFilter, } from '../lib/utils';
 import SettingModal from '../components/SettingModal';
 import CurrentSetting from '../components/CurrentSetting';
-import BikeList from '../components/BikeList';
 import bikeData from '../data/bike-data';
+import BikeCard from '../components/BikeCard';
 
 export default function HomeScreen({ navigation }) {
   React.useLayoutEffect(() => {
@@ -58,9 +58,20 @@ export default function HomeScreen({ navigation }) {
     applySizeFilter(filteredSizes)
   )(bikeData);
 
+  
+  const renderItem = ({ item }) => (
+    <BikeCard
+      name={item.name}
+      price={item.price}
+      images={item.images}
+      category={item.category}
+      size={item.size}
+      navigation={navigation}
+    />
+  );
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
+      <SafeAreaView>
         <SettingModal
           {...{
             modalVisible,
@@ -87,19 +98,12 @@ export default function HomeScreen({ navigation }) {
             maxPrice
           }}
         />
-        <BikeList
-          {...{
-            bikes,
-            navigation
-          }}
+        <FlatList
+          data={bikes}
+          renderItem={renderItem}
+          keyExtractor={item => item.id.toString()}
+          numColumns={2}
         />
-      </View>
-    </ScrollView>
+      </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white'
-  }
-});
