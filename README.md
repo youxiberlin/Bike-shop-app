@@ -3,9 +3,17 @@
 This is Bike Catalog App that shows list of bikes.  
 You can filter and sort bikes on the filter setting, and each bike has a detailed view that provides more info about the bike. Enjoy! 🚀
 
-<img src='./assets/app-screen1.png' alt='app-screen1' width='250'>
-<img src='./assets/app-screen2.png' alt='app-screen2' width='250'>
-<img src='./assets/app-screen3.png' alt='app-screen3' width='250'>
+<div style="display: flex">
+  <div>
+    <img src='./assets/app-screen1.png' alt='app-screen1' width='250'>
+  </div>
+  <div>
+    <img src='./assets/app-screen2.png' alt='app-screen2' width='250'>
+  </div>
+  <div>
+    <img src='./assets/app-screen3.png' alt='app-screen3' width='250'>
+  </div>
+</div>
 
 ## Getting Started
 
