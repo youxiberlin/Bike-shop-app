@@ -2,17 +2,19 @@ import React from 'react';
 import { View, StyleSheet, Image, Text, Button, Pressable } from 'react-native';
 import Swiper from 'react-native-swiper';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/Feather';
 
 export default function BikeDetail({ name, price, images, category, size }) {
   const sizeItems = Object.keys(size)
     .map(item => {
+          const stock = size[item];
           const itemObj = {
-            label: `${item} - ${size[item] ? `${size[item]} left` : 'Sold out'}`,
+            label: `${item} - ${stock ? `${stock} left` : 'Sold out'}`,
             value: item,
-          }
-          return itemObj
-        })
+            untouchable: stock ? false : true,
+            textStyle: stock ? { color: 'black' } : { color: '#aaa'}
+          };
+          return itemObj;
+        });
 
   const menuItems = [{label: 'Size', value: 'size', hidden: true }, ...sizeItems]
 
@@ -38,8 +40,20 @@ export default function BikeDetail({ name, price, images, category, size }) {
         <Text style={styles.itemPrice}>{price} €</Text>
         <DropDownPicker
           defaultValue='size'
+          style={{
+            backgroundColor: '#fafafa'
+          }}
+          itemStyle={{
+            justifyContent: 'flex-start',
+          }}
+          dropDownStyle={{
+            backgroundColor: '#fafafa', 
+            marginTop: -50
+          }}
           items={menuItems}
-          containerStyle={{height: 40}}
+          containerStyle={{
+            height: 40
+          }}
         />
       </View> 
     </View>
