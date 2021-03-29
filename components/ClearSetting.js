@@ -15,7 +15,7 @@ export default function ClearSetting({ clearSettingHandler }) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    marginVertical: 10,
-    justifyContent: 'center'
+    marginVertical: 5,
+    padding: 4
   }
 });

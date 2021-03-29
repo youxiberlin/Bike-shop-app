@@ -5,6 +5,7 @@ import CategoryFilter from './CategoryFilter';
 import PriceRangeFilter from './PriceRangeFilter';
 import SizeFilter from './SizeFilter';
 import ClearSetting from './ClearSetting';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function SettingModal({
     modalVisible,
@@ -19,6 +20,7 @@ export default function SettingModal({
     minMaxPrices,
     setMinMaxPrices
    }) {
+  const closeIcon = <Icon name="times-circle" size={30} color="#333" />;
   return (
     <View style={styles.container}>
       <Modal
@@ -54,15 +56,22 @@ export default function SettingModal({
                 filterSizeHandler
               }}
             />
-            <ClearSetting
-              {...{clearSettingHandler}}
-            />
             <Pressable
               style={styles.closeButton}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.textStyle}>Close</Text>
+              <View>
+              {closeIcon}
+              </View>
+              <View>
+                <Text style={styles.textStyle}>
+                  Close
+                </Text>
+              </View>
             </Pressable>
+            <ClearSetting
+              {...{clearSettingHandler}}
+            />
           </View>
         </View>
       </Modal>
@@ -85,6 +94,9 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   closeButton: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 20
   },
   textStyle: {
     textAlign: "center"
