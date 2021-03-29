@@ -3,6 +3,10 @@
 This is Bike Catalog App that shows list of bikes.  
 You can filter and sort bikes on the filter setting, and each bike has a detailed view that provides more info about the bike. Enjoy! 🚀
 
+<img src='./assets/app-screen1.png' alt='app-screen1' width='250'>
+<img src='./assets/app-screen2.png' alt='app-screen2' width='250'>
+<img src='./assets/app-screen3.png' alt='app-screen3' width='250'>
+
 ## Getting Started
 
 #### Requirement
@@ -41,5 +45,8 @@ Node.js, JavaScript, React Native, Expo
 As defined on `./models/bike.js`, each bike data has these properties: `id, name, category, price, size, images`
 
 The bike data that I used for this app can be found in `./data`
+
+#### Tested Devices
+iPhone SE, iPhone 8, iPhone12 mini, Pixel 4
 
 
