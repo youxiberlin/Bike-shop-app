@@ -24,10 +24,10 @@ export default function BikeCard({
         />
       </Pressable> 
       <View style={styles.itemInfo}>
+        <Text style={styles.itemCategory}>{category}</Text>
         <Text
           onPress={bikeDetailNavigator}
           style={styles.itemName}>{name}</Text>
-        <Text style={styles.itemCategory}>{category}</Text>
         <Text style={styles.itemPrice}>€ {price}</Text>
       </View>
     </View>
