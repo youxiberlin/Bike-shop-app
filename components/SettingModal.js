@@ -13,13 +13,11 @@ export default function SettingModal({
     setSortPriceOrder,
     filteredCategories,
     filterCategoryHandler,
-    minPrice,
-    setMinPrice,
-    maxPrice,
-    setMaxPrice,
     filteredSizes,
     filterSizeHandler,
-    clearSettingHandler
+    clearSettingHandler,
+    minMaxPrices,
+    setMinMaxPrices
    }) {
   return (
     <View style={styles.container}>
@@ -46,10 +44,8 @@ export default function SettingModal({
             />
             <PriceRangeFilter
               {...{
-                minPrice,
-                setMinPrice,
-                maxPrice,
-                setMaxPrice
+                minMaxPrices,
+                setMinMaxPrices
               }}
             />
             <SizeFilter

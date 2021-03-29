@@ -19,15 +19,13 @@ export default function HomeScreen({ navigation }) {
   const [sortPriceOrder, setSortPriceOrder] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [minPrice, setMinPrice] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(null);
+  const [minMaxPrices, setMinMaxPrices] = useState([]);
   const [filteredSizes, setFilterSizes] = useState([]);
 
   const clearSettingHandler = () => {
     setSortPriceOrder(null);
     setFilteredCategories([]);
-    setMinPrice(null);
-    setMaxPrice(null);
+    setMinMaxPrices([]);
     setFilterSizes([]);
   };
 
@@ -53,7 +51,7 @@ export default function HomeScreen({ navigation }) {
 
   const bikes = compose(
     filter(byCategory(filteredCategories)),
-    filter(byPriceRange(minPrice, maxPrice)),
+    filter(byPriceRange(...minMaxPrices)),
     sort(byPriceOrder(sortPriceOrder)),
     applySizeFilter(filteredSizes)
   )(bikeData);
@@ -80,13 +78,11 @@ export default function HomeScreen({ navigation }) {
             setSortPriceOrder,
             filteredCategories,
             filterCategoryHandler,
-            minPrice,
-            setMinPrice,
-            maxPrice,
-            setMaxPrice,
             filteredSizes,
             filterSizeHandler,
-            clearSettingHandler
+            clearSettingHandler,
+            minMaxPrices,
+            setMinMaxPrices
           }}
         />
         <CurrentSetting
@@ -94,8 +90,7 @@ export default function HomeScreen({ navigation }) {
             sortPriceOrder,
             filteredCategories,
             filteredSizes,
-            minPrice,
-            maxPrice
+            minMaxPrices,
           }}
         />
         <FlatList

@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 export default function PriceRangeFilter({
-  minPrice,
-  setMinPrice,
-  maxPrice,
-  setMaxPrice
+  minMaxPrices,
+  setMinMaxPrices
 }) {
   return (
     <View style={styles.container}>
@@ -13,22 +12,20 @@ export default function PriceRangeFilter({
         <Text style={styles.label}>
           Price Range
         </Text>
-      </View>
-      <View style={styles.inputs}>
-        <TextInput
-          style={styles.priceInput}
-          placeholder="minimum"
-          value={minPrice}
-          onChangeText={setMinPrice}
-          keyboardType="numeric"
-        />
-        <TextInput
-          style={styles.priceInput}
-          placeholder="max"
-          value={maxPrice}
-          onChangeText={setMaxPrice}
-          keyboardType="numeric"
-        />
+        <View style={styles.currPrice}>
+          <Text style={styles.min}>min: {minMaxPrices[0]}</Text>
+          <Text>max: {minMaxPrices[1]}</Text>
+        </View>
+        <View style={styles.slider}>
+          <MultiSlider
+            values={[100,3000]}
+            min={100}
+            max={2000}
+            step={50}
+            customLabel={() => <Text>value</Text>}
+            onValuesChange={v => setMinMaxPrices(v)}
+          />
+        </View>
       </View>
     </View>
   );
@@ -44,13 +41,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingTop: 12,
   },
-  inputs: {
-    flexDirection: 'row',
+  slider: {
+    paddingLeft: 20,
   },
-  priceInput: {
-    height: 25,
-    borderWidth: 1,
-    width: 100,
-    margin: 10,
+  currPrice: {
+    paddingLeft: 12,
+    flexDirection: 'row'
+  },
+  min: {
+    paddingRight: 10,
   },
 });

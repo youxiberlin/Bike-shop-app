@@ -5,14 +5,14 @@ export default function CurrentSetting({
   sortPriceOrder,
   filteredCategories,
   filteredSizes,
-  minPrice,
-  maxPrice
+  minMaxPrices,
 }) {
   const visible = sortPriceOrder ||
     filteredCategories.length ||
-    minPrice ||
-    maxPrice ||
+    minMaxPrices.length ||
     filteredSizes.length;
+
+  const [minPrice, maxPrice] = minMaxPrices;
 
   return (
     <View style={visible ? styles.visible : styles.container}>
@@ -33,7 +33,7 @@ export default function CurrentSetting({
         </View>
          :
        null}
-      {minPrice || maxPrice ?
+      {minMaxPrices.length ?
         <View style={styles.lists}>
           <Text>Price:</Text>
           <Text>min: {minPrice} max: {maxPrice}</Text>
