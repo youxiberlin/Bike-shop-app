@@ -27,7 +27,6 @@ const firebaseConfig = {
   measurementId: ""
 }
 
-
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -35,13 +34,15 @@ const Stack = createStackNavigator();
 
 export default function App (){
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
         setLoaded(true);
       } else {
+        setUser(user.uid)
         setLoaded(true);
         setLoggedIn(true);
       }
@@ -52,10 +53,9 @@ export default function App (){
     loggedIn ? (
       <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen
-              name="Bike Catalog"
-              component={HomeScreen}
-            />
+            <Stack.Screen name="Bike Catalog">
+              {(props) => <HomeScreen {...props} user={user}/>}
+            </Stack.Screen>
             <Stack.Screen
              name="BikeDetailScreen"
              component={BikeDetailScreen}
