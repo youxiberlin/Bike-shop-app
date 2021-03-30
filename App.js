@@ -42,7 +42,6 @@ export default function App (){
       if (!user) {
         setLoaded(true);
       } else {
-        // console.log('user', user.email)
         setLoaded(true);
         setLoggedIn(true);
       }
@@ -64,7 +63,7 @@ export default function App (){
             />
            </Stack.Navigator>
      </NavigationContainer>
-    ) : !loaded ? (
+    ) : loaded ? (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen

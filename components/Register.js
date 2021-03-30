@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Image, Text, Button, TextInput } from 'react-native';
-// import fb from '../firebase';
 import firebase from 'firebase';
-
 
 export default function Register() {
   const [name, setName] = useState(null);
@@ -11,7 +9,13 @@ export default function Register() {
 
   const onSignup = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(res => conosle.log(res))
+      .then((userCredential) => {
+        const user = userCredential.user;
+        firebase.firestore().collection("users").doc(user.uid).set({
+          uid: user.uid,
+          email: user.email
+        })
+      })
       .catch(err => console.log(err))
   }
 
