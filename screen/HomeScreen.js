@@ -6,12 +6,12 @@ import SettingModal from '../components/SettingModal';
 import CurrentSetting from '../components/CurrentSetting';
 import bikeData from '../data/bike-data';
 import BikeCard from '../components/BikeCard';
-import fb from '../firebase';
+import firebase from 'firebase';
 
 function getBikes() {
   const [bikes, setBikes] = useState([])
   useEffect(() => {
-    fb
+    firebase
       .firestore()
       .collection('bikes')
       .onSnapshot(snapshot => {
