@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, SafeAreaView, FlatList } from 'react-native';
 import { compose, filter, sort } from 'ramda'
 import { byCategory, byPriceRange, byPriceOrder, applySizeFilter, } from '../lib/utils';
@@ -6,8 +6,31 @@ import SettingModal from '../components/SettingModal';
 import CurrentSetting from '../components/CurrentSetting';
 import bikeData from '../data/bike-data';
 import BikeCard from '../components/BikeCard';
+import fb from '../firebase';
+
+function getBikes() {
+  const [bikes, setBikes] = useState([])
+  useEffect(() => {
+    fb
+      .firestore()
+      .collection('bikes')
+      .onSnapshot(snapshot => {
+        const newBikes = snapshot.docs.map((doc) => {
+          const item = {
+            id: doc.id,
+            ...doc.data()
+          }
+          return item;
+        })
+        setBikes(newBikes)
+      })
+  }, [])
+  return bikes
+}
 
 export default function HomeScreen({ navigation }) {
+  const dbBikes = getBikes();
+  console.log('bike', dbBikes.length)
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
