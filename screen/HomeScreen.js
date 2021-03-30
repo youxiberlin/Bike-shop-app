@@ -30,7 +30,7 @@ function getBikes() {
 
 export default function HomeScreen({ navigation }) {
   const dbBikes = getBikes();
-  console.log('bike', dbBikes.length)
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -77,7 +77,7 @@ export default function HomeScreen({ navigation }) {
     filter(byPriceRange(...minMaxPrices)),
     sort(byPriceOrder(sortPriceOrder)),
     applySizeFilter(filteredSizes)
-  )(bikeData);
+  )(dbBikes);
 
   
   const renderItem = ({ item }) => (

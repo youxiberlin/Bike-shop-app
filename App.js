@@ -9,9 +9,9 @@ import BikeDetailScreen from './screen/BikeDetailScreen';
 import bikes from './data/bikeArray';
 
 // Adding bike data to 'bikes'collection
-bikes.forEach((data) => 
-  fb.firestore().collection('bikes').add(data)
-)
+// bikes.forEach((data) => 
+//   fb.firestore().collection('bikes').add(data)
+// )
 //
 
 const Stack = createStackNavigator();
