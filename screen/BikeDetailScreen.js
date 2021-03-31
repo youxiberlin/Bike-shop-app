@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import BikeDetail from '../components/BikeDetail';
 
 export default function BikeDetailScreen({ route }) {
-  const { name, price, images, category, size } = route.params;
+  const { name, price, images, category, size, id, uid } = route.params;
   return (
       <BikeDetail
         {...{
@@ -11,7 +11,9 @@ export default function BikeDetailScreen({ route }) {
           price,
           category,
           images,
-          size
+          size,
+          id,
+          uid
         }}
       />
   );

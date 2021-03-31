@@ -86,6 +86,8 @@ export default function HomeScreen({ navigation, user }) {
       images={item.images}
       category={item.category}
       size={item.size}
+      id={item.id}
+      uid={user.uid}
       navigation={navigation}
     />
   );

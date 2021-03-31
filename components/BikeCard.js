@@ -7,10 +7,12 @@ export default function BikeCard({
      images,
      category,
      size,
+     id,
+     uid,
      navigation
   }) {
   const bikeDetailNavigator = () => navigation.navigate('BikeDetailScreen', {
-    name, price, images, category, size
+    name, price, images, category, size, id, uid
   })
   return (
     <View style={styles.container}>

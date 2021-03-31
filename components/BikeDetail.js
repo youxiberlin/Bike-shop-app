@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, StyleSheet, Image, Text, Button, Pressable } from 'react-native';
 import Swiper from 'react-native-swiper';
 import DropDownPicker from 'react-native-dropdown-picker';
+import firebase from 'firebase';
 
-export default function BikeDetail({ name, price, images, category, size }) {
+export default function BikeDetail({ name, price, images, category, size, id, uid }) {
+  const [chosenSize, setChosenSize] = useState(null);
   const sizeItems = Object.keys(size)
     .map(item => {
           const stock = size[item];
@@ -53,6 +55,17 @@ export default function BikeDetail({ name, price, images, category, size }) {
           items={menuItems}
           containerStyle={{
             height: 40
+          }}
+          onChangeItem={item => setChosenSize(item.value)}
+        />
+        <Button
+          title="Add to Cart"
+          onPress={() => {
+            firebase.firestore().collection("orders").add({
+              uid,
+              bikeId: id,
+              size: chosenSize
+            })
           }}
         />
       </View> 
