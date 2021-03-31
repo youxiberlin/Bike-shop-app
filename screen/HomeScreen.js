@@ -28,21 +28,50 @@ function getBikes() {
   return bikes
 }
 
+function getCartItems(uid) {
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection('orders')
+      .where("uid", "==", uid)
+      .get()
+      .then((snapshot) => {
+          const newItems = snapshot.docs.map((doc) => {
+          const item = { id: doc.id, ...doc.data() }
+          return item;
+        })
+        setCartItems(newItems)
+      })
+      .catch(err => console.log(err))
+  }, [])
+  return cartItems
+}
+
 export default function HomeScreen({ navigation, user }) {
   const dbBikes = getBikes();
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Button onPress={() => setModalVisible(true)} title="Filter" />
-        ),
-      });
-    }, [navigation]);
-
+  const cartItems = getCartItems(user.uid);
   const [sortPriceOrder, setSortPriceOrder] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [minMaxPrices, setMinMaxPrices] = useState([]);
   const [filteredSizes, setFilterSizes] = useState([]);
+  
+  const cartNavigator = () => navigation.navigate('Cart', { items: cartItems })
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+        headerLeft: () => (
+          <Button onPress={() => setModalVisible(true)} title="Filter" />
+        ),
+        headerRight: () => (
+          <Button
+            title="Cart"
+            onPress={cartNavigator}
+          />
+        )
+      });
+  }, [navigation]);
+
 
   const clearSettingHandler = () => {
     setSortPriceOrder(null);
