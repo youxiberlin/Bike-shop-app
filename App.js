@@ -42,7 +42,10 @@ export default function App (){
       if (!user) {
         setLoaded(true);
       } else {
-        setUser(user.uid)
+        setUser({
+          uid: user.uid,
+          email: user.email
+        })
         setLoaded(true);
         setLoggedIn(true);
       }

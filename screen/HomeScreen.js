@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, SafeAreaView, FlatList } from 'react-native';
+import { Button, SafeAreaView, FlatList, View, Text } from 'react-native';
 import { compose, filter, sort } from 'ramda'
 import { byCategory, byPriceRange, byPriceOrder, applySizeFilter, } from '../lib/utils';
 import SettingModal from '../components/SettingModal';
@@ -28,9 +28,8 @@ function getBikes() {
   return bikes
 }
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation, user }) {
   const dbBikes = getBikes();
-
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -93,6 +92,11 @@ export default function HomeScreen({ navigation }) {
 
   return (
       <SafeAreaView>
+        <View>
+          <Text>
+          logged in as {user.email}
+          </Text>
+        </View>
         <SettingModal
           {...{
             modalVisible,
