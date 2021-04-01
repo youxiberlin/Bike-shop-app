@@ -35,15 +35,13 @@ function getCartItems(uid) {
       .firestore()
       .collection('orders')
       .where("uid", "==", uid)
-      .get()
-      .then((snapshot) => {
+      .onSnapshot((snapshot) => {
           const newItems = snapshot.docs.map((doc) => {
           const item = { id: doc.id, ...doc.data() }
           return item;
         })
         setCartItems(newItems)
       })
-      .catch(err => console.log(err))
   }, [])
   return cartItems
 }
@@ -127,6 +125,15 @@ export default function HomeScreen({ navigation, user }) {
           <Text>
           logged in as {user.email}
           </Text>
+        </View>
+        <View>
+          {cartItems.map(item => (
+            <View key={item.id}>
+              <Text>
+                ID: {item.bikeId} SIZE: {item.size}
+              </Text>
+            </View>
+          ))}
         </View>
         <SettingModal
           {...{
