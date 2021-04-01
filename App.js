@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 
 import HomeScreen from './screen/HomeScreen';
 import BikeDetailScreen from './screen/BikeDetailScreen';
+import CartScreen from './screen/CartScreen';
 import Register from './components/Register'
 import bikes from './data/bikeArray';
 
@@ -64,7 +65,11 @@ export default function App (){
              component={BikeDetailScreen}
              options={({ route }) => ({ title: route.params.name })}
             />
-           </Stack.Navigator>
+            <Stack.Screen
+             name="Cart"
+             component={CartScreen}
+            />
+          </Stack.Navigator>
      </NavigationContainer>
     ) : loaded ? (
       <NavigationContainer>
